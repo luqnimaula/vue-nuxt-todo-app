@@ -1,10 +1,10 @@
 <template>
   <button 
-    type="button"
+    :type="type"
     :class="`todo-button ${colorClass} ${sizeClass}`"
     :disabled="disabled"
   >
-    button
+    <slot/>
   </button>
 </template>
 <script>
