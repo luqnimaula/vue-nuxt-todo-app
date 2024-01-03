@@ -1,0 +1,23 @@
+input.todo-input {
+  transition: all;
+  transition-duration: 200ms;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: 2px solid $gray-color;
+  
+  &:focus {
+    outline: none;
+    border: 2px solid $primary-color;
+  }
+
+  &::placeholder {
+    color: $gray-color;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
