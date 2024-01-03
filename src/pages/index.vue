@@ -1,3 +1,3 @@
 <template>
-  <div>[main page goes here]</div>
+  <div class="todo-container">[main page goes here]</div>
 </template>

@@ -1,0 +1,15 @@
+@import "~/styles/_variables.scss";
+
+html {
+  font-family: $font-family;
+}
+
+body {
+  background-color: $primary-color;
+}
+
+.todo-container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
