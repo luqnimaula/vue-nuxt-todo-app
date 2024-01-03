@@ -1,0 +1,39 @@
+.todo-button {
+  transition: all;
+  transition-duration: 200ms;
+  border: 2px solid $primary-color;
+  background-color: white;
+  color: $primary-color;
+  cursor: pointer;
+  opacity: 0.75;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &-primary {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  &-small {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1.25rem;
+  }
+  &-medium {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1.875rem;
+  }
+  &-large {
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1.875rem;
+  }
+
+  &:is(:disabled) {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+  }
+}

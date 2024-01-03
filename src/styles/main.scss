@@ -1,5 +1,8 @@
 @import "~/styles/_variables.scss";
 
+// UI components
+@import "~/styles/ui/_button.scss";
+
 html {
   font-family: $font-family;
 }
