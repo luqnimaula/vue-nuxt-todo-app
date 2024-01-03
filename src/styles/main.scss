@@ -5,11 +5,16 @@ html {
 }
 
 body {
-  background-color: $primary-color;
+  background-color: $primary-light-color;
 }
 
 .todo-container {
   min-height: 100vh;
   display: grid;
   place-items: center;
+
+  .todo-card {
+    background-color: white;
+    padding: 2rem;
+  }
 }
