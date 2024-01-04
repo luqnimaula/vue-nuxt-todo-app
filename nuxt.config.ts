@@ -11,7 +11,8 @@ export default defineNuxtConfig({
   ],
   runtimeConfig:{
     public: {
-      BASE_API: process.env.BASE_API
+      BASE_API: process.env.BASE_API,
+      USER_ID: process.env.USER_ID
     }
   }
 })
