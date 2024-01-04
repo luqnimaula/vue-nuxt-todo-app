@@ -23,5 +23,28 @@ body {
   .todo-card {
     background-color: white;
     padding: 2rem;
+    border-radius: 2rem;
+    width: 42rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .todo-header {
+      width: 100%;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    form.todo-form {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .todo-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
   }
 }
