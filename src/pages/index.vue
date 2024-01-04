@@ -14,18 +14,26 @@
           Add
         </todo-button>
       </form>
+      <div class="todo-list">
+        <todo-item/>
+        <todo-item/>
+        <todo-item/>
+        <todo-item/>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import TodoButton from '~/components/ui/Button.vue'
 import TodoInput from '~/components/ui/Input.vue'
+import TodoItem from '~/components/todo/TodoItem.vue'
 
 export default {
   name: 'HomePage',
   components: {
     TodoButton,
-    TodoInput
+    TodoInput,
+    TodoItem
   }
 }
 </script>
