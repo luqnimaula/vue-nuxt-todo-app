@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   ],
   plugins: [
     "~/plugins/axios.js",
+    "~/plugins/vuex.js"
   ],
   runtimeConfig:{
     public: {
