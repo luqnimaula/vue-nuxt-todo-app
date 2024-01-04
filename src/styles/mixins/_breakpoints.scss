@@ -1,0 +1,21 @@
+@mixin media-screen-breakpoint-min($name, $breakpoints: $media-screen-breakpoints) {
+  $size: map-get($breakpoints, $name);
+  @if $size {
+    @media only screen and (min-width: $size) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-screen-breakpoint-max($name, $breakpoints: $media-screen-breakpoints) {
+  $size: map-get($breakpoints, $name);
+  @if $size {
+    @media only screen and (max-width: $size) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

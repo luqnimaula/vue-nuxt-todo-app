@@ -1,4 +1,8 @@
+// variables
 @import "~/styles/_variables.scss";
+
+// mixins
+@import "~/styles/mixins/_breakpoints.scss";
 
 // UI components
 @import "~/styles/ui/_button.scss";
