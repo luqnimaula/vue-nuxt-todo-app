@@ -40,6 +40,20 @@ export const actions = {
       throw error
     }
   },
+  async markTodoCompleted({ state }, {_this, payload}) {
+    try {
+      const { data } = await _this.$api.patch(`/todos/${payload.id}`, {
+        completed: payload.completed
+      })
+      state.data = state.data.map(record => 
+        record.id === payload.id ? ({ ...record, completed: payload.completed }) : record
+      )
+      return data
+    } catch (error) {
+      alert(error)
+      throw error
+    }
+  },
   async deleteTodo({ state }, {_this, id}) {
     try {
       await _this.$api.delete(`/todos/${id}`)

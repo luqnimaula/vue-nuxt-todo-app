@@ -3,8 +3,9 @@
     <input 
       type="checkbox"
       :id="id"
+      :value="value"
       :checked="checked"
-      @change="emit('change')"
+      @change="$emit('change')"
     />
     <label :for="id">
       {{ label }}
@@ -23,6 +24,11 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    value: {
+      type: String,
+      required: false,
+      default: undefined
     },
     checked: {
       type: Boolean,

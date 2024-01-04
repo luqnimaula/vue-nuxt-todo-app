@@ -4,6 +4,8 @@
       :id="`task-${data.id}`"
       :label="data.title"
       :checked="data.completed"
+      :value="data.id"
+      @change="$emit('change')"
     />
     <todo-button-icon
       type="button"

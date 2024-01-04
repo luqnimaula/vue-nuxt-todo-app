@@ -23,10 +23,11 @@
       </form>
       <div class="todo-list">
         <todo-item 
-          v-for="task in todoList"
-          :key="task.id"
-          :data="task"
+          v-for="todo in todoList"
+          :key="todo.id"
+          :data="todo"
           @delete="onDeleteTodo"
+          @change="onCheckTodo"
         />
       </div>
     </div>
@@ -57,7 +58,8 @@ export default {
     ...mapActions({
       fetchTodos: 'todo/fetchTodos',
       createTodo: 'todo/createTodo',
-      deleteTodo: 'todo/deleteTodo'
+      deleteTodo: 'todo/deleteTodo',
+      markTodoCompleted: 'todo/markTodoCompleted'
     }),
     async onSubmit() {
       const value = this.title.trim()
@@ -68,6 +70,16 @@ export default {
         })
         this.title = ''
       }
+    },
+    onCheckTodo(e) {
+      const { value, checked } = e?.target ?? {}
+      if (value) this.markTodoCompleted({
+        _this: this,
+        payload: {
+          id: parseInt(value),
+          completed: !!checked
+        }
+      })
     },
     onDeleteTodo(id) {
       this.deleteTodo({ _this: this, id })
