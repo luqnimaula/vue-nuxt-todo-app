@@ -8,6 +8,8 @@
   opacity: 0.75;
   border-radius: 50%;
   aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
 
   &:hover {
     opacity: 1;
