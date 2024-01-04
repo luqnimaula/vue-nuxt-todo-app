@@ -5,4 +5,12 @@ export default defineNuxtConfig({
   css: [
     "~/styles/main.scss",
   ],
+  plugins: [
+    "~/plugins/axios.js",
+  ],
+  runtimeConfig:{
+    public: {
+      BASE_API: process.env.BASE_API
+    }
+  }
 })

@@ -34,6 +34,9 @@ export default {
     TodoButton,
     TodoInput,
     TodoItem
+  },
+  mounted() {
+    this.$api.get('/todos')
   }
 }
 </script>
