@@ -15,10 +15,11 @@
         </todo-button>
       </form>
       <div class="todo-list">
-        <todo-item/>
-        <todo-item/>
-        <todo-item/>
-        <todo-item/>
+        <todo-item 
+          v-for="task in todoList"
+          :key="task.id"
+          :data="task"
+        />
       </div>
     </div>
   </div>
@@ -27,6 +28,7 @@
 import TodoButton from '~/components/ui/Button.vue'
 import TodoInput from '~/components/ui/Input.vue'
 import TodoItem from '~/components/todo/TodoItem.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
@@ -36,7 +38,17 @@ export default {
     TodoItem
   },
   mounted() {
-    this.$api.get('/todos')
+    this.fetchTodos(this)
+  },
+  methods: {
+    ...mapActions({
+      fetchTodos: 'todo/fetchTodos'
+    })
+  },
+  computed: {
+    ...mapGetters({
+      todoList: 'todo/todoList'
+    })
   }
 }
 </script>

@@ -1,7 +1,14 @@
 <template>
   <div class="todo-item">
-    <todo-checkbox label="Todo Item"/>
-    <todo-button-icon size="sm">
+    <todo-checkbox 
+      :id="`task-${data.id}`"
+      :label="data.title"
+      :checked="data.completed"
+    />
+    <todo-button-icon
+      type="button"
+      size="sm"
+    >
       <img 
         alt=""
         src="~/assets/icons/trash.svg"
@@ -17,12 +24,12 @@ export default {
   components: {
     TodoCheckbox,
     TodoButtonIcon
+  },
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
   }
-  // props: {
-  //   data: {
-  //     type: Object,
-  //     required: true
-  //   }
-  // }
 }
 </script>
