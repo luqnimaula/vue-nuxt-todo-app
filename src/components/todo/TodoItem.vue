@@ -8,6 +8,7 @@
     <todo-button-icon
       type="button"
       size="sm"
+      @click="$emit('delete', data.id)"
     >
       <img 
         alt=""

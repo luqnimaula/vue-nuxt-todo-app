@@ -26,6 +26,7 @@
           v-for="task in todoList"
           :key="task.id"
           :data="task"
+          @delete="onDeleteTodo"
         />
       </div>
     </div>
@@ -55,7 +56,8 @@ export default {
   methods: {
     ...mapActions({
       fetchTodos: 'todo/fetchTodos',
-      createTodo: 'todo/createTodo'
+      createTodo: 'todo/createTodo',
+      deleteTodo: 'todo/deleteTodo'
     }),
     async onSubmit() {
       const value = this.title.trim()
@@ -66,6 +68,9 @@ export default {
         })
         this.title = ''
       }
+    },
+    onDeleteTodo(id) {
+      this.deleteTodo({ _this: this, id })
     }
   },
   computed: {

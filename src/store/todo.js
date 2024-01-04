@@ -34,8 +34,20 @@ export const actions = {
         userId: getUserID()
       })
       state.data.unshift(data)
+      return data
     } catch (error) {
       alert(error)
+      throw error
+    }
+  },
+  async deleteTodo({ state }, {_this, id}) {
+    try {
+      await _this.$api.delete(`/todos/${id}`)
+      state.data = state.data.filter(record => record.id !== id)
+      return true
+    } catch (error) {
+      alert(error)
+      throw error
     }
   }
 }
