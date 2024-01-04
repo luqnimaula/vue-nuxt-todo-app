@@ -4,8 +4,15 @@
       <div class="todo-header">
         Todo App
       </div>
-      <form class="todo-form">
-        <todo-input placeholder="Add a new todo"/>
+      <form 
+        class="todo-form"
+        @submit.prevent="onSubmit"
+      >
+        <todo-input 
+          placeholder="Add a new todo"
+          v-model="title"
+          required
+        />
         <todo-button 
           type="submit"
           color="primary"
@@ -40,10 +47,26 @@ export default {
   mounted() {
     this.fetchTodos(this)
   },
+  data() {
+    return {
+      title: ''
+    }
+  },
   methods: {
     ...mapActions({
-      fetchTodos: 'todo/fetchTodos'
-    })
+      fetchTodos: 'todo/fetchTodos',
+      createTodo: 'todo/createTodo'
+    }),
+    async onSubmit() {
+      const value = this.title.trim()
+      if (value) {
+        await this.createTodo({
+          _this: this,
+          payload: { title: value }
+        })
+        this.title = ''
+      }
+    }
   },
   computed: {
     ...mapGetters({

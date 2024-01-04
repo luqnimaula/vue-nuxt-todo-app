@@ -3,7 +3,9 @@
     :type="type"
     :placeholder="placeholder"
     :disabled="disabled"
-    :class="`todo-input`"
+    class="todo-input"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 <script>
@@ -25,6 +27,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    modelValue: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 }
