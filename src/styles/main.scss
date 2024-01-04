@@ -26,12 +26,19 @@ body {
 
   .todo-card {
     background-color: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 2rem;
-    width: 42rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 80%;
+    height: 85%;
+
+    @include media-screen-breakpoint-min('md') {
+      width: 42rem;
+      height: auto;
+      padding: 2rem;
+    }
 
     .todo-header {
       width: 100%;
@@ -49,8 +56,12 @@ body {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      height: 40vh;
       overflow-y: auto;
+      height: 70vh;
+
+      @include media-screen-breakpoint-min('md') {
+        height: 40vh;
+      }
 
       .todo-item {
         display:  flex;
