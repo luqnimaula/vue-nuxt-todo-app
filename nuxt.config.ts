@@ -14,5 +14,12 @@ export default defineNuxtConfig({
       BASE_API: process.env.BASE_API,
       USER_ID: process.env.USER_ID
     }
+  },
+  app: {
+    head: {
+      title: 'Nuxt Todo App',
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+    }
   }
 })
