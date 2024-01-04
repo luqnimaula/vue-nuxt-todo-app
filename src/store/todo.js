@@ -15,53 +15,74 @@ export const getters = {
 const getUserID = () => useRuntimeConfig().public.USER_ID
 
 export const actions = {
-  async fetchTodos({ state }, _this) {
+  async fetchTodos({ commit }, _this) {
     try {
-      state.loading = true
+      commit('setLoading', true)
       const { data } = await _this.$api.get('/todos', { params: {userId: getUserID()} })
-      state.data = data
+      commit('setTodoList', data)
     } catch (error) {
       alert(error)
     } finally {
-      state.loading = false
+      commit('setLoading', false)
     }
   },
-  async createTodo({ state }, {_this, payload}) {
+  async createTodo({ commit }, {_this, payload}) {
     try {
       const { data } = await _this.$api.post('/todos', {
         title: payload.title,
         completed: false,
         userId: getUserID()
       })
-      state.data.unshift(data)
+      commit('insertTodo', data)
       return data
     } catch (error) {
       alert(error)
       throw error
     }
   },
-  async markTodoCompleted({ state }, {_this, payload}) {
+  async markTodoCompleted({ commit }, {_this, payload}) {
     try {
       const { data } = await _this.$api.patch(`/todos/${payload.id}`, {
         completed: payload.completed
       })
-      state.data = state.data.map(record => 
-        record.id === payload.id ? ({ ...record, completed: payload.completed }) : record
-      )
+      commit('updateTodo', {
+        id: payload.id,
+        completed: payload.completed
+      })
       return data
     } catch (error) {
       alert(error)
       throw error
     }
   },
-  async deleteTodo({ state }, {_this, id}) {
+  async deleteTodo({ commit }, {_this, id}) {
     try {
       await _this.$api.delete(`/todos/${id}`)
-      state.data = state.data.filter(record => record.id !== id)
+      commit('removeTodo', id)
       return true
     } catch (error) {
       alert(error)
       throw error
     }
+  }
+}
+
+export const mutations = {
+  setLoading(state, value) {
+    state.loading = value
+  },
+  setTodoList(state, payload) {
+    state.data = payload
+  },
+  insertTodo(state, payload) {
+    state.data.unshift(payload)
+  },
+  updateTodo(state, payload) {
+    state.data = state.data.map(record => 
+      record.id === payload.id ? ({ ...record, ...payload }) : record
+    )
+  },
+  removeTodo(state, id) {
+    state.data = state.data.filter(record => record.id !== id)
   }
 }
