@@ -17,8 +17,9 @@
           type="submit"
           color="primary"
           size="md"
+          :disabled="submitting"
         >
-          Add
+          {{ submitting ? 'Adding...' : 'Add' }}
         </todo-button>
       </form>
       <div class="todo-list">
@@ -51,6 +52,7 @@ export default {
   },
   data() {
     return {
+      submitting: false,
       title: ''
     }
   },
@@ -63,12 +65,17 @@ export default {
     }),
     async onSubmit() {
       const value = this.title.trim()
-      if (value) {
-        await this.createTodo({
-          _this: this,
-          payload: { title: value }
-        })
-        this.title = ''
+      if (value && !this.submitting) {
+        try {
+          this.submitting = true
+          await this.createTodo({
+            _this: this,
+            payload: { title: value }
+          })
+          this.title = ''
+        } finally {
+          this.submitting = false
+        }
       }
     },
     onCheckTodo(e) {
