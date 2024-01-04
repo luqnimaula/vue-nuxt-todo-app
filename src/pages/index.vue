@@ -23,13 +23,20 @@
         </todo-button>
       </form>
       <div class="todo-list">
-        <todo-item 
-          v-for="todo in todoList"
-          :key="todo.id"
-          :data="todo"
-          @delete="onDeleteTodo"
-          @change="onCheckTodo"
-        />
+        <template v-if="isLoading">
+          <div class="todo-list-loading-container">
+            <span>Loading...</span>
+          </div>
+        </template>
+        <template v-else>
+          <todo-item 
+            v-for="todo in todoList"
+            :key="todo.id"
+            :data="todo"
+            @delete="onDeleteTodo"
+            @change="onCheckTodo"
+          />
+        </template>
       </div>
     </div>
   </div>
@@ -94,6 +101,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      isLoading: 'todo/isLoading',
       todoList: 'todo/todoList'
     })
   }
